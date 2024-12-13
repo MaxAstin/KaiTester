@@ -1,0 +1,32 @@
+<idea-plugin>
+    <id>com.github.MaxAstin.KaiTester</id>
+    <name>KaiTester</name>
+    <vendor email="valentin.podkopaev.dev@gmail.com" url="https://github.com/MaxAstin">MaxAstin</vendor>
+
+    <description>KaiTester is a plugin for generating unit tests in Kotlin using OpenAI API</description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.kotlin</depends>
+
+    <actions>
+        <action
+                id="KaiTester.GenerateTestAction"
+                class="com.tester.kai.action.GenerateTestAction"
+                text="Test by AI">
+            <add-to-group group-id="GenerateGroup" anchor="first"/>
+        </action>
+    </actions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <postStartupActivity implementation="com.tester.kai.KaiStartupActivity"/>
+        <notificationGroup id="com.tester.kai.notifications" displayType="BALLOON" />
+
+        <intentionAction>
+            <language>kotlin</language>
+            <className>com.tester.kai.action.GenerateTestAction</className>
+            <category>Testing</category>
+            <descriptionDirectoryName>GenerateTestAction</descriptionDirectoryName>
+        </intentionAction>
+    </extensions>
+
+</idea-plugin>
