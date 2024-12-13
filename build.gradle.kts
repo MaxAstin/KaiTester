@@ -1,4 +1,5 @@
 import org.jetbrains.intellij.platform.gradle.IntelliJPlatformType
+import org.jetbrains.intellij.platform.gradle.TestFrameworkType
 
 plugins {
     id("java")
@@ -27,6 +28,8 @@ dependencies {
     implementation(libs.bundles.ktor)
     implementation(libs.kotlinx.serialization)
 
+    testImplementation(libs.junit)
+
     intellijPlatform {
         create(
             type = IntelliJPlatformType.AndroidStudio,
@@ -34,9 +37,11 @@ dependencies {
             useInstaller = true
         )
 
-        instrumentationTools()
-
         bundledPlugin("org.jetbrains.kotlin")
+
+        instrumentationTools()
+        pluginVerifier()
+        testFramework(TestFrameworkType.Platform)
     }
 }
 
