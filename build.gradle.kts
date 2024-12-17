@@ -110,19 +110,6 @@ tasks {
     publishPlugin {
         token.set(System.getenv("PUBLISH_TOKEN"))
     }
-
-    register("validateOpenAIKey") {
-        doLast {
-            val apiKey = System.getenv("OPENAI_API_KEY")
-            if (apiKey.isNullOrEmpty()) {
-                throw GradleException("OPENAI_API_KEY environment variable is not set")
-            }
-        }
-    }
-
-    buildPlugin {
-        dependsOn("validateOpenAIKey")
-    }
 }
 
 configurations.all {
