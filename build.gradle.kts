@@ -34,11 +34,7 @@ dependencies {
     testImplementation(libs.junit)
 
     intellijPlatform {
-        create(
-            type = IntelliJPlatformType.AndroidStudio,
-            version = "2024.1.2.13",
-            useInstaller = true
-        )
+        androidStudio(version = "2024.2.1.12", useInstaller = true)
 
         bundledPlugin("org.jetbrains.kotlin")
 
@@ -63,6 +59,11 @@ intellijPlatform {
                 )
             }
         }
+
+        ideaVersion {
+            sinceBuild = providers.gradleProperty("pluginSinceBuild")
+            untilBuild = providers.gradleProperty("pluginUntilBuild")
+        }
     }
 
     signing {
@@ -74,13 +75,9 @@ intellijPlatform {
     publishing {
         token = providers.environmentVariable("PUBLISH_TOKEN")
         channels = providers.gradleProperty("pluginVersion").map {
-            listOf(
-                it.substringAfter(
-                    delimiter = '-',
-                    missingDelimiterValue = ""
-                ).substringBefore('.')
-                    .ifEmpty { "default" }
-            )
+            listOf(it.substringAfter('-', "")
+                .substringBefore('.')
+                .ifEmpty { "default" })
         }
     }
 
@@ -101,14 +98,12 @@ configurations.runtimeOnly {
 }
 
 tasks {
-    signPlugin {
-        certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
-        privateKey.set(System.getenv("PRIVATE_KEY"))
-        password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
+    wrapper {
+        gradleVersion = providers.gradleProperty("gradleVersion").get()
     }
 
     publishPlugin {
-        token.set(System.getenv("PUBLISH_TOKEN"))
+        dependsOn(patchChangelog)
     }
 }
 
