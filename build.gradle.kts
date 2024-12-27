@@ -82,10 +82,9 @@ intellijPlatform {
     }
 
     val versions = listOf(
-        "2024.2.1.1", // Ladybug
-        "2024.1.2.1", // Koala Feature Drop
-        "2024.1.1.1", // Koala
-        "2023.3.1.1" // Jellyfish
+        "2024.2.1.12", // Ladybug
+        "2024.1.2.13", // Koala Feature Drop
+        "2024.1.1.13", // Koala
     )
     pluginVerification {
         ides {
