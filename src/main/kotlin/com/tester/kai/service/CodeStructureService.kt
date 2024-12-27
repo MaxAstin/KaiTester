@@ -24,8 +24,8 @@ class CodeStructureService(
     }
 
     private fun getCodeStructure(ktFile: KtFile): CodeStructure {
-        val imports = ktFile.importDirectives.map {
-            it.importPath.toString()
+        val imports = ktFile.importDirectives.mapNotNull {
+            it.importedFqName?.toString()
         }
         val functions = ktFile.declarations.functions
         val classes = ktFile.declarations
