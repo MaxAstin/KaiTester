@@ -8,6 +8,10 @@
     <depends>com.intellij.modules.platform</depends>
     <depends>org.jetbrains.kotlin</depends>
 
+    <idea-version
+            since-build="AI-233"
+            until-build="AI-242.*"/>
+
     <actions>
         <action
                 id="KaiTester.GenerateTestAction"
@@ -19,7 +23,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <postStartupActivity implementation="com.tester.kai.KaiStartupActivity"/>
-        <notificationGroup id="com.tester.kai.notifications" displayType="BALLOON" />
+        <notificationGroup id="com.tester.kai.notifications" displayType="BALLOON"/>
 
         <intentionAction>
             <language>kotlin</language>
