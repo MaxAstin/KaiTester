@@ -8,10 +8,6 @@
     <depends>com.intellij.modules.platform</depends>
     <depends>org.jetbrains.kotlin</depends>
 
-    <idea-version
-            since-build="AI-233"
-            until-build="AI-242.*"/>
-
     <actions>
         <action
                 id="KaiTester.GenerateTestAction"
