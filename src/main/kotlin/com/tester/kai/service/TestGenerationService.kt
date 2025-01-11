@@ -136,8 +136,8 @@ class TestGenerationService(
             editor.currentKtFunction?.takeIf { function ->
                 function.isPublic
             }?.let { function ->
-                val imports = (file as? KtFile)?.importDirectives?.map { import ->
-                    import.importPath.toString()
+                val imports = (file as? KtFile)?.importDirectives?.mapNotNull { import ->
+                    import.importedFqName?.toString()
                 }.orEmpty()
                 val isSuspend = function.modifierList?.hasModifier(KtTokens.SUSPEND_KEYWORD) == true
                 val ktClass = editor.currentKtClass

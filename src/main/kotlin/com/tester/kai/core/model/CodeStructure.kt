@@ -1,18 +1,18 @@
 package com.tester.kai.core.model
 
-class CodeStructure(
+data class CodeStructure(
     val imports: List<String>,
     val functions: List<Function>,
     val classes: List<Class>,
 ) {
 
-    class Function(
+    data class Function(
         val annotations: List<String>,
         val name: String,
         val body: String,
     )
 
-    class Class(
+    data class Class(
         val functions: List<Function>,
     )
 
